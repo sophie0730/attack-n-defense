@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  python-server:
+    image: sophiehsu/python-server:latest
+    container_name: python-server
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  nginx:
+    image: sophiehsu/nginx-server:latest
+    container_name: nginx-server
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
